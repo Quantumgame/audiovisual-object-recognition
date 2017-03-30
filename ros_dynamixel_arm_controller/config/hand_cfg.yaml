@@ -1,0 +1,36 @@
+hand_to_grip:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: hand_to_grip
+    joint_speed: 1
+    motor:
+        id: 6
+        init: 512
+        min: 0
+        max: 1023
+bone_to_hand1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: bone_to_hand1
+    joint_speed: 1
+    motor:
+        id: 4
+        init: 512
+        min: 0
+        max: 1023
+bone_to_hand2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: bone_to_hand2
+    joint_speed: 1
+    motor:
+        id: 5
+        init: 512
+        min: 0
+        max: 1023

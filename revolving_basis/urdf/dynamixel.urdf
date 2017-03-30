@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+
+<robot name="arm">
+
+	<link name="base_frame">
+		<visual>
+			<geometry>
+				<box size="0.2 0.2 0.001"/>
+			</geometry>
+
+			<origin xyz="0 0 0"/>
+		</visual>
+	</link>
+
+	<link name="base">
+		<visual>
+			<geometry>
+				<box size="0.115 0.115 0.04"/>
+			</geometry>
+
+			<origin xyz="0 0 0.02"/>
+
+			<material name="light_blue">
+				<color rgba="0.180 0.443 0.835 1"/>
+			</material>
+		</visual>
+	</link>
+	<link name="torso">
+		<visual>
+			<!-- base circular -->
+			<geometry>
+				<cylinder radius="0.06" length="0.001"/>
+			</geometry>
+
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+
+			<material name="light_yellow">
+				<color rgba="0.835 0.764 0.180 1"/>
+			</material>
+		</visual>
+		<visual>
+			<!-- aste -->
+			<geometry>
+				<box size="0.03 0.001 0.05"/>
+			</geometry>
+			<origin xyz="0 0.055 0.025" rpy="0 0 0"/>
+		</visual>
+		<visual>
+			<!-- aste -->
+			<geometry>
+				<box size="0.03 0.001 0.05"/>
+			</geometry>
+			<origin xyz="0 -0.055 0.025" rpy="0 0 0"/>
+		</visual>
+		<visual>
+			<!-- aste -->
+			<geometry>
+				<box size="0.03 0.001 0.05"/>
+			</geometry>
+			<origin xyz="-0.015 0.055 0.035" rpy="0 1.57 0"/>
+		</visual>
+		<visual>
+			<!-- aste -->
+			<geometry>
+				<box size="0.03 0.001 0.05"/>
+			</geometry>
+			<origin xyz="-0.015 -0.055 0.035" rpy="0 1.57 0"/>
+		</visual>
+		<visual>
+			<!-- base -->
+			<geometry>
+				<box size="0.11 0.03 0.001"/>
+			</geometry>
+			<origin xyz="-0.04 0 0.035" rpy="1.57 0 1.57"/>
+		</visual>
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+			<origin xyz="-0.065 0.040 0.035" rpy="0 0 0"/>
+		</visual>
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+			<origin xyz="-0.065 -0.040 0.035" rpy="0 0 0"/>
+		</visual>
+	</link>
+
+	<link name="bone">
+		<visual>
+			<!-- body -->
+			<geometry>
+				<box size="0.105 0.03 0.03"/>
+			</geometry>
+
+			<origin xyz="-0.085 0 0" rpy="0 0 0"/>
+
+			<material name="light_orange">
+				<color rgba="0.749 0.529 0.149 1"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="hand">
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+
+			<origin xyz="-0.01 0.040 0" rpy="0 0 0"/>
+
+			<material name="light_green">
+				<color rgba="0.149 0.749 0.196 1"/>
+			</material>
+		</visual>
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+
+			<origin xyz="-0.01 -0.040 0" rpy="0 0 0"/>
+		</visual>
+		<visual>
+			<!-- base -->
+			<geometry>
+				<box size="0.11 0.025 0.001"/>
+			</geometry>
+
+			<origin xyz="-0.035 0 0" rpy="1.57 0 1.57"/>
+		</visual>
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+
+			<origin xyz="-0.048 0 -0.012" rpy="0 1.57 0"/>
+		</visual>
+	</link>
+
+	<link name="grip">
+		<visual>
+			<!-- motor -->
+			<geometry>
+				<box size="0.05 0.03 0.025"/>
+			</geometry>
+
+			<origin xyz="-0.026 0 0" rpy="0 0 0"/>
+
+			<material name="light_red">
+				<color rgba="0.749 0.2 0.149 1"/>
+			</material>
+		</visual>
+
+	</link>
+
+	<!-- Joints -->
+
+	<joint name="world_base" type="fixed">
+		<parent link="base_frame"/>
+		<child link="base"/>
+
+		<origin xyz="0 0 0"/>
+	</joint>
+
+	<joint name="base" type="revolute">
+		<parent link="base"/>
+		<child link="torso"/>
+
+		<origin xyz="0 0 0.05"/>
+
+		<limit lower="1" upper="2" effort="1000.0" velocity="0.5" />
+		<axis xyz="0 0 1"/>
+	</joint>
+
+	<joint name="base_to_bone" type="revolute">
+		<parent link="torso"/>
+		<child link="bone"/>
+
+		<origin xyz="-0.08 0 0.035"/>
+
+		<limit lower="0" upper="2" effort="1000.0" velocity="0.5" />
+		<axis xyz="0 1 0"/>
+	</joint>
+
+	<joint name="bone_to_hand" type="revolute">
+		<parent link="bone"/>
+		<child link="hand"/>
+
+		<origin xyz="-0.16 0 0"/>
+
+		<limit lower="-2" upper="2" effort="1000.0" velocity="0.5" />
+		<axis xyz="0 1 0"/>
+	</joint>
+
+	<joint name="hand_to_grip" type="revolute">
+		<parent link="hand"/>
+		<child link="grip"/>
+
+		<origin xyz="-0.06 0 -0.024"/>
+
+		<limit lower="-1.57" upper="1.57" effort="1000.0" velocity="0.5" />
+		<axis xyz="1 0 0"/>
+	</joint>
+
+</robot>

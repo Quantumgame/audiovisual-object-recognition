@@ -1,0 +1,6 @@
+ <launch>
+  <node pkg="rosbag" type="rosbag" name="rosbag" args="play -d 2 $(find audio_classifier)/plastico0.bag"/>
+  <node name="extract" pkg="image_view" type="extract_images" respawn="false" output="screen" cwd="ROS_HOME">
+    <remap from="image" to="/camera/rgb/image_raw"/>
+  </node>
+</launch>

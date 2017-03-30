@@ -1,0 +1,31 @@
+<launch>
+
+	<!-- Config -->
+	<rosparam file="$(find dynamixel_arm_controller)/config/hand_motor_cfg.yaml" command="load"/>
+
+	<!-- Description of robot for RVIZ -->
+	<param name="robot_description" textfile="$(find dynamixel_arm_controller)/urdf/dynamixel.urdf" />
+	<!-- <param name="use_gui" value="True"/> -->
+
+	<!-- Show Joint Sliders -->
+ 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+<!-- 		<rosparam param="source_list">["hand_joint_states"]</rosparam> -->
+		<rosparam param="source_list">["joint_states"]</rosparam>
+	</node>
+	<!-- Publisher for Transformations -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+	<!-- RVIZ -->
+	<!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find dynamixel_arm_controller)/config/urdf.rviz" /> -->
+
+	<!-- Hand controller -->
+	<node name="hand_publisher" pkg="dynamixel_arm_controller" type="hand_publisher.py">
+		<rosparam param="hand_positions" file="$(find dynamixel_arm_controller)/config/hand_positions_cfg.yaml" command="load"/>
+		<rosparam param="hand_mapping" file="$(find dynamixel_arm_controller)/config/hand_mapping_cfg.yaml" command="load"/>
+		<rosparam param="hand_current_position">initial_pos</rosparam>
+	</node>
+	
+
+	<!-- Inverse kinematics module -->
+	<!-- <node name="arm_ik" pkg="dynamixel_arm_controller" type="arm_ik.py" /> -->
+</launch>

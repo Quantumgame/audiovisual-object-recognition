@@ -1,0 +1,5 @@
+hand_to_grip: ["hand_to_grip"]
+bone_to_hand: ["-bone_to_hand1", "bone_to_hand2"]
+base_to_bone: ["-base_to_bone1", "base_to_bone2"]
+base: ["base"]
+grip: ["grip"]

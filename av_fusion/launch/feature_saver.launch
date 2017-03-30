@@ -1,0 +1,13 @@
+<launch>
+
+	<node name="brand_descriptor_service" pkg="visual_descriptor" type="brand_service" />
+
+	<node name="base_descriptor_service" pkg="visual_descriptor" type="base_service" />
+
+	<node name="masked_base_descriptor_service" pkg="visual_descriptor" type="masked_base_service" />
+
+	<!-- <node name="mfcc_descriptor_service" pkg="mfcc_descriptor" type="ros_service.py" /> -->
+	
+	<node name="av_feature_saver" pkg="audiovisual_fusion" type="feature_saver.py" output="screen" args="$(arg dataset)"/>
+	  
+</launch>

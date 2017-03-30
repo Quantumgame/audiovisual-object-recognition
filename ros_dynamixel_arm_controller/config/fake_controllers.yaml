@@ -1,0 +1,9 @@
+controller_list:
+  - name: fake_arm_controller
+    joints:
+      - base
+      - base_to_bone
+      - bone_to_hand
+  - name: fake_grip_controller
+    joints:
+      - hand_to_grip

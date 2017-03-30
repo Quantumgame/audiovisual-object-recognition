@@ -1,0 +1,84 @@
+grip:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: grip
+    joint_speed: 1
+    motor:
+        id: 7
+        init: 512
+        min: 0
+        max: 1023
+hand_to_grip:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: hand_to_grip
+    joint_speed: 4
+    motor:
+        id: 6
+        init: 512
+        min: 0
+        max: 1023
+bone_to_hand1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: bone_to_hand1
+    joint_speed: 0.5
+    motor:
+        id: 4
+        init: 512
+        min: 0
+        max: 1023
+bone_to_hand2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: bone_to_hand2
+    joint_speed: 0.5
+    motor:
+        id: 5
+        init: 512
+        min: 0
+        max: 1023
+base_to_bone1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: base_to_bone1
+    joint_speed: 0.5
+    motor:
+        id: 3
+        init: 512
+        min: 0
+        max: 1023
+base_to_bone2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: base_to_bone2
+    joint_speed: 0.5
+    motor:
+        id: 2
+        init: 512
+        min: 0
+        max: 1023
+base:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: base
+    joint_speed: 0.5
+    motor:
+        id: 1
+        init: 512
+        min: 0
+        max: 1023
